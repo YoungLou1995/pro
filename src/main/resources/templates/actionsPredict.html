@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>actionsPredict</title>
+</head>
+<body>
+
+<div>
+    qq:<span th:text="${count.qqNum}"></span><br>
+    wechat:<span th:text="${count.wechatNum}"></span><br>
+    weibo:<span th:text="${count.weiboNum}"></span><br>
+    wangyi:<span th:text="${count.wyemailNum}"></span><br>
+</div>
+
+<div th:each="url: ${urlsPredictList}">
+    <span th:text="${url.url}">分类结果:</span>
+    <span th:text="${url.cls}"></span><br>
+</div>
+
+</body>
+</html>

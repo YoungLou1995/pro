@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <link>
+</head>
+<body style="background-image:url(../static/img/bj.jpg); background-size: 100%">
+<script th:inline="javascript" th:each="test: ${action2showList}">
+
+    var test= [[${test.gmtTimeStamp}]];
+    document.write(test);
+
+</script>
+
+
+<!--    <div th:each="action2show: ${action2showList}">-->
+<!--        <span th:text="${action2show.gmtTimeStamp}"></span><br>-->
+<!--    </div>-->
+
+
+</body>
+</html>
