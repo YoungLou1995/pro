@@ -1,0 +1,50 @@
+create table ACTIONS
+(
+    ID           INTEGER  auto_increment,
+    SOURCEIP     VARCHAR(50),
+    DESTIP       VARCHAR(50),
+    SOURCEPORT   INTEGER,
+    DESTPORT     INTEGER,
+    PROTOCOL     VARCHAR(20),
+    PACKAGESIZE  DOUBLE,
+    GMTTIMESTAMP BIGINT,
+    CLS          VARCHAR(20),
+    constraint ACTIONS_PK
+        primary key (ID)
+);
+
+
+create table URLS
+(
+    ID      INTEGER auto_increment,
+    URL     VARCHAR(200),
+    APPNAME VARCHAR(50),
+    CLS     BOOLEAN default FALSE,
+    constraint URLS_PK
+        primary key (ID)
+);
+
+
+create table ACTIONSPREDICT
+(
+    ID      INTEGER  auto_increment,
+    APPNAME VARCHAR(100),
+    constraint ACTIONPREDICT_PK
+        primary key (ID)
+);
+
+create table URLSPREDICT
+(
+    ID      INTEGER auto_increment,
+    URL     VARCHAR(200),
+    CLS     INTEGER,
+    APPNAME VARCHAR(100),
+    constraint URLSPREDICT_PK
+        primary key (ID)
+);
+
+
+
+
+
+
