@@ -1,23 +1,32 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>actionsPredict</title>
 </head>
 <body>
+<!--<form action="/postActionsPredict" method="post">-->
+<!--    <input type="text" name="appName">appName<br>-->
+<!--    <input type="text" name="action">action<br>-->
+<!--    <input type="submit">-->
+<!--</form>-->
 
-<div>
-    qq:<span th:text="${count.qqNum}"></span><br>
-    wechat:<span th:text="${count.wechatNum}"></span><br>
-    weibo:<span th:text="${count.weiboNum}"></span><br>
-    wangyi:<span th:text="${count.wyemailNum}"></span><br>
-</div>
+<form action="/postActionsPredict" method="post">
+    <input type="radio" name="action" value="微信发送文字消息">微信发送文字消息<br>
+    <input type="radio" name="action" value="微信发送语音消息">微信发送语音消息<br>
+    <input type="radio" name="action" value="微信发送图片">微信发送图片<br>
+    <input type="radio" name="action" value="QQ发送文字消息">QQ发送文字消息<br>
+    <input type="radio" name="action" value="QQ发送语音消息">QQ发送语音消息<br>
+    <input type="radio" name="action" value="QQ发送图片">QQ发送语音<br>
+    <input type="radio" name="action" value="微博上传">微博上传<br>
+    <input type="radio" name="action" value="微博点赞">微博点赞<br>
+    <input type="radio" name="action" value="微博评论">微博评论<br>
+    <input type="radio" name="action" value="网易邮箱打开邮件">网易邮箱打开邮件<br>
+    <input type="radio" name="action" value="网易邮箱发送邮件">网易邮箱发送邮件<br>
 
-<div th:each="url: ${urlsPredictList}">
-    <span th:text="${url.url}"> </span>
-    <span th:text="${url.cls}"> </span><br>
-    <span th:text="${url.appName}"></span>
-</div>
+    <input type="submit" value="submit">
+</form>
+
 
 </body>
 </html>

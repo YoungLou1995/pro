@@ -20,6 +20,6 @@ public class IndexController {
     public String index(Model model){
          List<Actions2show> actions2showList = actionsMapper.list();
          model.addAttribute("action2showList", actions2showList);
-        return "index";
+        return "hello";
     }
 }

@@ -1,0 +1,1 @@
+alter table ACTIONSPREDICT alter column APPNAME rename to "actionName";

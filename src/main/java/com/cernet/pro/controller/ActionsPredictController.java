@@ -1,18 +1,16 @@
 package com.cernet.pro.controller;
 
-import com.cernet.pro.dto.ActionsCountDTO;
 import com.cernet.pro.mapper.ActionsPredictMapper;
-import com.cernet.pro.mapper.UrlsPredictMapper;
 import com.cernet.pro.model.ActionsPredict;
-import com.cernet.pro.model.UrlsPredict;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 @Controller
 public class ActionsPredictController {
@@ -20,38 +18,45 @@ public class ActionsPredictController {
     @Autowired
     private ActionsPredictMapper actionsPredictMapper;
 
-    @Autowired
-    private UrlsPredictMapper urlsPredictMapper;
 
-    @GetMapping("actionsPredict")
-    public String predict(Model model){
 
-        ActionsCountDTO actionsCountDTO = new ActionsCountDTO();
-        List<ActionsPredict>  actionsPredictList = actionsPredictMapper.list();
-        actionsCountDTO.setQqNum(0);
-        actionsCountDTO.setWechatNum(0);
-        actionsCountDTO.setWeiboNum(0);
-        actionsCountDTO.setWyemailNum(0);
+    @GetMapping("getActionsPredict")
+    public String getActionsPredict(){
+        System.out.println("here!");
+        return "actionsPredict";
+    }
 
-        for (ActionsPredict actionsPredict : actionsPredictList) {
-            if (actionsPredict!=null){
-                if (actionsPredict.getAppName().contains("qq")){
-                    actionsCountDTO.setQqNum(actionsCountDTO.getQqNum()+1);
-                } else if (actionsPredict.getAppName().contains("wechat")){
-                    actionsCountDTO.setWechatNum(actionsCountDTO.getWechatNum()+1);
-                }else if (actionsPredict.getAppName().contains("weibo")){
-                    actionsCountDTO.setWeiboNum(actionsCountDTO.getWeiboNum()+1);
-                }else if (actionsPredict.getAppName().contains("wangyi")){
-                    actionsCountDTO.setWyemailNum(actionsCountDTO.getWyemailNum()+1);
+    @PostMapping("postActionsPredict")
+    public String postActionsPredict(@RequestParam("action") String action){
+
+        String appName = "nothing";
+        String[] actionList = {"QQ", "微信", "微博", "网易邮箱"};
+        if (action!=null){
+            for (String a : actionList) {
+                if (action.contains(a)){
+                    appName = a;
+                    break;
                 }
             }
         }
 
+        System.out.println(appName);
+        System.out.println(action);
 
-        List<UrlsPredict> urlsPredictList = urlsPredictMapper.list();
+        Date time= new Date();
+        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String formatTime = format.format(time);
 
-        model.addAttribute("count", actionsCountDTO);
-        model.addAttribute("urlsPredictList", urlsPredictList);
+        ActionsPredict actionsPredict = new ActionsPredict();
+
+        actionsPredict.setSystemTime(formatTime);
+        actionsPredict.setAppName(appName);
+        actionsPredict.setActionName(action);
+
+        actionsPredictMapper.insert(actionsPredict);
+
+
         return "actionsPredict";
+
     }
 }

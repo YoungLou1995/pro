@@ -1,0 +1,1 @@
+alter table URLSPREDICT alter column URL VARCHAR(500);

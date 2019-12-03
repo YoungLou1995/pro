@@ -3,13 +3,14 @@ package com.cernet.pro.model;
 import lombok.Data;
 
 @Data
-public class UrlsPredict {
-    private Integer id;
+public class Url2App {
+
     private String url;
-    private Integer cls;
-    private String type;
+    private String urlMethod;
     private Long timeStamp;
+    private Integer property;
+    private Float propertyNum;
+    private Integer uid;
     private String appName;
     private String systemTime;
-    private Boolean IPV;
 }

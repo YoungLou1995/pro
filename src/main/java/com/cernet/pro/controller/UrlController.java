@@ -2,7 +2,6 @@ package com.cernet.pro.controller;
 
 import com.cernet.pro.mapper.UrlsMapper;
 import com.cernet.pro.model.Url2show;
-import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
